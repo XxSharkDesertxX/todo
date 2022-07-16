@@ -5,10 +5,10 @@
                          <v-icon>mdi-plus</v-icon>
                     </v-btn>
             </template>
-            <v-card class="headline teal--text">
+            <v-card class=" headline tela--text pa-2">
                 Create New Task ...
             </v-card>
-            <v-card-text>
+            <v-card-text class=" info ">
                 <v-form ref="form" lazy-validation>
                     <v-text-field v-model="form.title" :rules="rulse.title" label="Title" required />
                     <v-text-field v-model="form.desc" :rules="rulse.desc" label="Description" required />
@@ -22,6 +22,9 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+import { mapState } from "vuex";
+
 export default {
     name:"Addtask",
 
@@ -45,12 +48,27 @@ export default {
         }
     },
 
+    computed:{
+        ...mapState([
+            'item'
+        ])
+    },
+
     methods: {
+        ...mapActions([
+            'addItem'
+        ]),
+
+
+
         save(){
-            if (this.$refs.form.validate()) {
-                this.$store.dispatch({type:'task/add'}, this.form)
-                this.$refs.form.reset();
-            }
+           let data ={
+            id:this.item.length,
+            title:this.form.title,
+             desc : this.form.desc,
+            done:false
+           }
+           this.addItem(data);
         }
     },
 }

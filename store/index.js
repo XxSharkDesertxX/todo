@@ -12,13 +12,19 @@ export default()=>{
 
         mutations:{
             remove(state,item){
-                state.item.splice(item.id ,1);
+                state.item.splice(item.id , 1);
+            },
+            adds(state,item){
+                state.item.push(item);
             }
         },
 
         actions:{
             removes(context,itemrem){
                 context.commit("remove", itemrem);
+            },
+            addItem(context,itemadd){
+                context.commit("adds" , itemadd);
             }
         },
 

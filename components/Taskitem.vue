@@ -1,5 +1,5 @@
 <template>
-  <v-list-item v-if="task" inactive>
+  <v-list-item v-if="task" inactive >
               <v-list-item-action>
                 <v-btn icon :color="color" @click="changeStatus">
                 <v-icon>{{icon}}</v-icon>
@@ -25,6 +25,7 @@
 
 <script>
 import {mapActions } from 'vuex';
+import { mapState } from "vuex";
 export default {
     name:"Taskitem",
 
@@ -36,6 +37,10 @@ export default {
    },
 
    computed:{
+
+      ...mapState([
+        'item'
+      ]),
 
         icon(){
             return this.task.done ? "mdi-check" : "mdi-reload-alert"
@@ -53,7 +58,8 @@ export default {
 
     remove(){
         this.removes(this.task.id)
-    },
+        console.log(this.task.id);
+    }, 
     changeStatus(){
         return this.task.done = !this.task.done
     }
