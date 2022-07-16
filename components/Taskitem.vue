@@ -24,6 +24,7 @@
 </template>
 
 <script>
+import {mapActions } from 'vuex';
 export default {
     name:"Taskitem",
 
@@ -35,6 +36,7 @@ export default {
    },
 
    computed:{
+
         icon(){
             return this.task.done ? "mdi-check" : "mdi-reload-alert"
         },
@@ -44,8 +46,13 @@ export default {
    },
 
    methods: {
+
+    ...mapActions([
+      'removes'
+    ]),
+
     remove(){
-        console.log(this.task.id);
+        this.removes(this.task.id)
     },
     changeStatus(){
         return this.task.done = !this.task.done

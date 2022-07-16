@@ -33,44 +33,33 @@
 
 <script>
 import Taskitem from '../components/Taskitem.vue'
-import getters from '../store/task'
+
+import {mapState} from 'vuex'
 export default {
   components: { Taskitem },
    data() {
         return {
-          tasks:[
-                {
-                    id:1,
-                    title:"Task 1",
-                    desc : "Description Task 1",
-                    done:false
-                }, {
-                    id:2,
-                    title:"Task 2",
-                    desc : "Description Task 2",
-                    done:true
-                }, {
-                    id:3,
-                    title:"Task 3",
-                    desc : "Description Task 3",
-                    done:false
-                },
-            ]
+          tasks:this.item
         }
     },
 
     computed:{
-      getters(){
-        this.doneTask 
-      },
+        ...mapState([
+          'item'
+      ]),
 
       doneTask(){
-        return this.tasks.filter(task => task.done == true);
+        console.log(this.data);
+        return this.item.filter(task => task.done == true);
       },
       pendingTask(){
-        return this.tasks.filter(task => task.done == false);
+        return this.item.filter(task => task.done == false);
       },
-    }
+    },
+
+     
+
+
 
 }
 </script>
