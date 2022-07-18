@@ -69,6 +69,8 @@ export default {
             done:false
            }
            this.addItem(data);
+           this.form.title=null;
+           this.form.desc=null
         }
     },
 }

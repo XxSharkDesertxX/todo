@@ -12,7 +12,7 @@ export default()=>{
 
         mutations:{
             remove(state,item){
-                state.item.splice(item.id , 1);
+                state.item.splice(item ,1);
             },
             adds(state,item){
                 state.item.push(item);
