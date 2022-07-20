@@ -16,7 +16,7 @@
                 </v-list-item-content>
 
               <v-list-item-action>
-                <v-btn icon color="error" @click="remove()">
+                <v-btn icon color="error" @click="remove(task.id)">
                 <v-icon>mdi-trash-can-outline</v-icon>
               </v-btn>  
               </v-list-item-action> 
@@ -53,16 +53,21 @@ export default {
    methods: {
 
     ...mapActions([
-      'removes'
+      'removes',
+      'save'
     ]),
 
-    remove(){
-        this.removes(this.task.id)
+    remove(data){
+        this.removes(data)
         console.log(this.task.id);
     }, 
     changeStatus(){
         return this.task.done = !this.task.done
     }
+   },
+
+   mounted() {
+      this.save();
    },
 
 }

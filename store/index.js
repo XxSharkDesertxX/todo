@@ -7,7 +7,8 @@ export default()=>{
     return new Vuex.Store({
 
         state:{
-            item
+            item,
+            task:[]
         },
 
         mutations:{
@@ -16,6 +17,9 @@ export default()=>{
             },
             adds(state,item){
                 state.item.push(item);
+            },
+            save(state){
+                state.task = item;
             }
         },
 
@@ -25,6 +29,9 @@ export default()=>{
             },
             addItem(context,itemadd){
                 context.commit("adds" , itemadd);
+            },
+            save(context, itemsave){
+                context.commit('save',itemsave);
             }
         },
 

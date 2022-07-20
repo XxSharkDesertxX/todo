@@ -49,7 +49,6 @@ export default {
       ]),
 
       doneTask(){
-        console.log(this.data);
         return this.item.filter(task => task.done == true);
       },
       pendingTask(){
